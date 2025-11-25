@@ -209,6 +209,7 @@ class _RegisterMenuState extends State<RegisterMenu> {
     registeruser(username, email, phone, password);
   }
 
+
   void registeruser(
     String username,
     String email,
@@ -244,7 +245,7 @@ class _RegisterMenuState extends State<RegisterMenu> {
           var res = jsonDecode(response.body);
           print(res.toString());
           Navigator.of(context).pop();
-          if (response.statusCode == 200) {
+          if (res['status'] == 'success') {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('Registration Successful'),

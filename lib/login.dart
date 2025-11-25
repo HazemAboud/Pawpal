@@ -188,7 +188,7 @@ class _LoginMenuState extends State<LoginMenu> {
           var res = jsonDecode(response.body);
           print(res.toString());
           Navigator.of(context).pop();
-          if (response.statusCode == 200) {
+          if (res['status'] == 'success') {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text('Log in Successful'),
