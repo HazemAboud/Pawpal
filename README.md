@@ -1,4 +1,4 @@
-# pawpal
+# Pawpal
 Setup Steps:
 
 1) Create pawpal_db database
@@ -31,6 +31,7 @@ Failure: sendJsonResponse(['success' => false,'message' => 'Pet submition failed
 Error: sendJsonResponse(['success' => false,'message' => 'An error occurred: ' . $e->getMessage()]);
 
 Invalid request: sendJsonResponse(['success' => false, 'message' => 'Invalid Request']);
+
 --------------------
 
 mainpage interacts with get_my_pets.php
