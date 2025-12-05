@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pawpal/login.dart';
+import 'package:pawpal/tabs/login.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

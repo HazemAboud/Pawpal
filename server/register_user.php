@@ -1,5 +1,5 @@
 <?php
-    
+    include 'db_connection.php';
     header("Access-Control-Allow-Origin: *");
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -9,9 +9,7 @@
         $password = $_POST['password'];
         $phone = $_POST['phone'];
         $sqlcheckmail = "SELECT * FROM `tbl_users` WHERE `email` = '$email'";
-        $hashedpassword = sha1($password);
 
-        include 'db_connection.php';
         try{
             $result = $conn->query($sqlcheckmail);
             if ($result->num_rows > 0) {
@@ -20,6 +18,7 @@
                 sendJsonResponse($response);
                 exit;
             }else{
+                $hashedpassword = sha1($password);
                 $sqladduser = "INSERT INTO `tbl_users` (`name`, `email`, `password`, `phone`) 
                 VALUES ('$name', '$email', '$hashedpassword', '$phone')";
                 if($conn->query($sqladduser)){

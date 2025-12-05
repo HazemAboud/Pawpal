@@ -1,37 +1,45 @@
-PawPal
+# pawpal
 
-Module 1: User authentication
+Flow:
 
-App Screenshots:
+   Submit pet <-> Main page <-> Login <-> Sign up 
 
-![alt text](<Screenshot 2025-11-25 224906.png>)
+API:
 
-![alt text](<Screenshot 2025-11-25 225021.png>)
+submitpetscreen interacts with submit_pet.php
 
-![alt text](<Screenshot 2025-11-25 225205.png>)
+submit_pet recieves pet details through post request, then processes the images sent as Json by decoding each one from base64 then saving the images inside "images/" folder generating a unique name for each one (userid_petname_counter_time.png) 
+the ecounter is used to give a unique value for each image if multiple images were submitted at once, as time could be same since the loop processes too fast, then a json response is sent back to the submitpetscreen.dart.
 
-![alt text](<Screenshot 2025-11-25 225312.png>)
+Example of Json response:
 
-JSON response:
+Success:  sendJsonResponse(['success' => true,'message' => 'Pet submitted successfully']);
 
-•	Registration:
+Failure: sendJsonResponse(['success' => false,'message' => 'Pet submition failed']);
 
-{status: error, message: Email already registered.}
+Error: sendJsonResponse(['success' => false,'message' => 'An error occurred: ' . $e->getMessage()]);
 
-{status: success, message: Registered successfully.}
-•	Log in:
+Invalid request: sendJsonResponse(['success' => false, 'message' => 'Invalid Request']);
+--------------------
 
-{status: error, message: Incorrect password.}
+mainpage interacts with get_my_pets.php
 
-{status: success, message: Login successful, user: {user_id: 35, name: Hazem, email: hazem@gmail.com, password: e87acbc52d009d6a1d619f235198765c663e4ebe, phone: 01209283874, reg_date: 2025-11-25 22:22:44.345830}
+get_my_pets fetches all pets from the database using using "SELECT * FROM tbl_pets" after getting called during mainpage initialization, and returns the data if any to the dart file, which then creates a pet object for each returned row, and displays them on the screen
 
-Links:
+Example of Json response:
 
-Github: https://github.com/HazemAboud/Pawpal
+Success: sendJsonResponse(['success' => true,'message' => 'Fetched successfully','data' => $pets]);
 
-YouTube: https://youtu.be/uxUQIvvrsTE
+Success-No Rows:  sendJsonResponse(['success' => true,'message' => 'No submissions yet']);
 
+Failure:  sendJsonResponse(['success' => false,'message' => 'An error occurred: ' . $e->getMessage()]);
 
-Database screenshot for user data model:
- 
-![alt text](<Screenshot 2025-11-25 225809.png>)
+Invalid request: sendJsonResponse(['success' => false,'message' => 'Invalid Request']);
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
