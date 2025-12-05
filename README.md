@@ -1,4 +1,15 @@
 # pawpal
+Setup Steps:
+
+1) Create pawpal_db database
+
+2) import both tbl_pets.sql and tbl_users.sql files into your database
+
+3) create "pawpal" folder in your xamapp->htdocs and copy the server folder into it
+
+4) modify the baseUrl value in lib/tabs/url.dart to your localhost adress
+
+-The applicaiton should be able to run now
 
 Flow:
 
