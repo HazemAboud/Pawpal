@@ -21,9 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             foreach ($imagesArray as $imgBase64) {
                 $decodedImage = base64_decode($imgBase64);
                 $filename = $user_id . '_' . $pet_name . '_'. $counter . '_' . time() . '.png';
-                $filePath = "images/" . $filename;
+                $filePath = "uploads/" . $filename;
 
-                if (!file_put_contents($filePath, $decodedImage)) continue;
+                file_put_contents($filePath, $decodedImage);
                 $imagePaths[] = $filePath;
                 $counter++;
             }
