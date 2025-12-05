@@ -1,4 +1,4 @@
-# pawpal
+# Pawpal
 Setup Steps:
 
 1) Create pawpal_db database
@@ -12,11 +12,11 @@ Setup Steps:
 -The applicaiton should be able to run now
 
 Flow:
-
+-------
    Submit pet <-> Main page <-> Login <-> Sign up 
 
 API:
-
+-------
 submitpetscreen interacts with submit_pet.php
 
 submit_pet recieves pet details through post request, then processes the images sent as Json by decoding each one from base64 then saving the images inside "images/" folder generating a unique name for each one (userid_petname_counter_time.png) 
@@ -31,6 +31,7 @@ Failure: sendJsonResponse(['success' => false,'message' => 'Pet submition failed
 Error: sendJsonResponse(['success' => false,'message' => 'An error occurred: ' . $e->getMessage()]);
 
 Invalid request: sendJsonResponse(['success' => false, 'message' => 'Invalid Request']);
+
 --------------------
 
 mainpage interacts with get_my_pets.php
