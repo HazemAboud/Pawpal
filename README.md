@@ -12,11 +12,11 @@ Setup Steps:
 -The applicaiton should be able to run now
 
 Flow:
-
+-------
    Submit pet <-> Main page <-> Login <-> Sign up 
 
 API:
-
+-------
 submitpetscreen interacts with submit_pet.php
 
 submit_pet recieves pet details through post request, then processes the images sent as Json by decoding each one from base64 then saving the images inside "images/" folder generating a unique name for each one (userid_petname_counter_time.png) 
