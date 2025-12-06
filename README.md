@@ -17,14 +17,14 @@ Flow:
    Submit pet <-> Main page <-> Login <-> Sign up 
 
 API:
-
+--
 submitpetscreen interacts with submit_pet.php
 
 submit_pet recieves pet details through post request, then processes the images sent as Json by decoding each one from base64 then saving the images inside "images/" folder generating a unique name for each one (userid_petname_counter_time.png) 
 the ecounter is used to give a unique value for each image if multiple images were submitted at once, as time could be same since the loop processes too fast, then a json response is sent back to the submitpetscreen.dart.
 
 Example of Json response:
---
+
 Success:  sendJsonResponse(['success' => true,'message' => 'Pet submitted successfully']);
 
 Failure: sendJsonResponse(['success' => false,'message' => 'Pet submition failed']);
