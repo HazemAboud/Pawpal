@@ -22,6 +22,8 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
   TextEditingController descCtr = TextEditingController();
   TextEditingController addCtr = TextEditingController();
   TextEditingController petTypeCtr = TextEditingController(text: 'Cat');
+  TextEditingController latctr = TextEditingController();
+  TextEditingController lngctr = TextEditingController();
   var lat = 0.0, lng = 0.0;
   String selectedPetType = 'Cat';
   String selectedSubType = 'Adoption';
@@ -289,7 +291,8 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
                               var loc = await _determinePosition();
                               lat = loc.latitude;
                               lng = loc.longitude;
-
+                              latctr.text = lat.toString();
+                              lngctr.text = lng.toString();
                               List<Placemark> placemarks =
                                   await placemarkFromCoordinates(lat, lng);
 
@@ -301,6 +304,34 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
                             },
                           ),
                         ),
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: screenwidth * 0.4-2.5,
+                            child: TextField(
+                              controller: latctr,
+                              readOnly: true,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Latitude',
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 5,),
+                          SizedBox(
+                            width: screenwidth * 0.4-2.5,
+                            child: TextField(
+                              controller: lngctr,
+                              readOnly: true,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Longtitude',
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -348,19 +379,19 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
   Future<void> pickImage() async {
     final picker = ImagePicker();
     final imgs = await picker.pickMultiImage();
-    if(images.length + imgs.length > 3) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('You can only select 3 images')));
-    }else if (imgs.isEmpty) {
+    if (images.length + imgs.length > 3) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('You can only select 3 images')),
+      );
+    } else if (imgs.isEmpty) {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('Cannot pick image')));
-    }else{
-      for(var image in imgs) {
-      images.add(image);
-      setState(() {});
-    }
+    } else {
+      for (var image in imgs) {
+        images.add(image);
+        setState(() {});
+      }
     }
   }
 
