@@ -27,8 +27,9 @@ class _MainScreenState extends State<MainScreen> {
 
   Future<void> fetchPets() async {
     try {
-      final response = await http.get(
+      final response = await http.post(
         Uri.parse('${URL.baseUrl}/pawpal/server/get_my_pets.php'),
+        body: {'user_id': widget.user.userId.toString()},
       );
       var res = jsonDecode(response.body);
       if(res['message'] == 'No submissions yet'){

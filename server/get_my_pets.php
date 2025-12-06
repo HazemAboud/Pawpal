@@ -3,9 +3,10 @@ include 'db_connection.php';
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try{
-        $stmt = $conn->prepare("SELECT * FROM tbl_pets");
+        $stmt = $conn->prepare("SELECT * FROM tbl_pets where user_id = ?");
+        $stmt->bind_param("i", $_POST['user_id']);
         $stmt->execute();
 
         $result = $stmt->get_result();
